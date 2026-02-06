@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Allsky en Direct</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f; /* Fond sombre pour l'astronomie */
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { margin-bottom: 10px; }
+        .camera-container {
+            max-width: 100%;
+            margin: 0 auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        img {
+            width: 100%; /* S'adapte aux mobiles */
+            max-width: 800px;
+            height: auto;
+            display: block;
+        }
+        .footer { margin-top: 20px; font-size: 0.8em; color: #888; }
+    </style>
+</head>
+<body>
+
+    <h1>Météo du Ciel en Direct</h1>
+    <p>Vue depuis ma caméra Allsky</p>
+
+    <div class="camera-container">
+        <img id="allskyImage" src="http://ma-allsky.duckdns.org:8080/image.jpg" alt="Vue du ciel">
+    </div>
+
+    <p class="footer">L'image se rafraîchit automatiquement toutes les minutes.</p>
+
+    <script>
+        // Script pour rafraîchir l'image sans recharger la page
+        setInterval(function() {
+            var myImage = document.getElementById('allskyImage');
+            // On ajoute un timestamp pour forcer le navigateur à recharger l'image
+            myImage.src = 'http://ma-allsky.duckdns.org:8080/image.jpg?' + new Date().getTime();
+        }, 60000); // 60000 ms = 60 secondes
+    </script>
+
+</body>
+</html>
